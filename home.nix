@@ -35,6 +35,7 @@
     pkgs.lazygit
     pkgs.btop
     pkgs.yq-go
+    pkgs.ghostty
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -115,6 +116,7 @@
     enable = true;
     config = {
       modifier = "Mod4";
+      terminal = "ghostty";
 
       bars = [
         {
@@ -122,6 +124,14 @@
           statusCommand = "while true; do date +'%Y-%m-%d %H:%M'; sleep 60; done";
         }
       ];
+    };
+  };
+
+  # Ghostty terminal configuration
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      theme = "Blue Matrix";
     };
   };
 
