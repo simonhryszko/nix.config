@@ -2,4 +2,3 @@
 - when you about updating config bofore that do: `man home-configuration | grep -A10 -B5 -i <phase>` or similar manual search
   - man configuration.nix ..
   - .. grep <phase>
-- use `git commit -am '<emoji> <message>'` for commiting changes (on requast) AKA c!
