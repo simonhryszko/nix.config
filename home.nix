@@ -206,6 +206,26 @@
     };
   };
 
+  # MPV media player configuration
+  programs.mpv = {
+    enable = true;
+    config = {
+      # Save position on quit and restore on resume
+      save-position-on-quit = true;
+
+      # Keep track of watch history
+      watch-later-directory = "~/.local/share/mpv/watch_later";
+
+      # Automatically resume from where left off
+      resume-playback = true;
+      resume-playback-check-mtime = true;
+
+      # Other useful settings for better experience
+      keep-open = true; # Keep video open after playback ends
+      keep-open-pause = true; # Pause instead of stopping at end
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
