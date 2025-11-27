@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of simon";
+  description = "Home Manager and NixOS configuration of simon";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -17,14 +17,28 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
+      # NixOS configuration
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.simon = import ./home.nix;
+          }
+        ];
+      };
+
+      # Standalone Home Manager configuration
       homeConfigurations.simon = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-		# ./configuration.nix
-		./home.nix 
+		./home.nix
 	];
 
         # Optionally use extraSpecialArgs
